@@ -11,7 +11,7 @@ if (operation === 'add') {
 } else if (operation === 'div') {
     message = `${number1} / ${number2} = ${number1 / number2}`;
 } else {
-    message = 'Wrong choice. Please choose betweem add, sub, mult or div';
+    message = 'Wrong choice. Please choose between add, sub, mult or div';
 }
 
 
