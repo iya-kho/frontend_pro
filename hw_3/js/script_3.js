@@ -1,4 +1,4 @@
-let hours = Number(prompt('Please enter the number of hours', '1'));
+const hours = Number(prompt('Please enter the number of hours', '1'));
 
 let secs = hours * 60 * 60;
 
