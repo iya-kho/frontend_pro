@@ -61,37 +61,31 @@ function balanceToNumber(str) {
     return Number(str.replace(/[$,]/g, ''));
 }
 
+// // Вивести масив телефонних номерів користувачів, у яких баланс більше 2000 доларів
+
+let phones = [];
+
+for (let i of users) {
+    if (balanceToNumber(i.balance) >= 2000) {
+        phones.push(i.phone);
+    }
+}
+
+console.log('Filtered phone numbers: ' + phones);
+
+
 
 
 // Знайти суму всіх балансів користувачів
 
 let sum = 0;
-let balances = [];
+let balancesNum = users.map(users => balanceToNumber(users.balance));
 
 
-for (let i of users) {
-    i.balance = balanceToNumber(i.balance);
-    balances.push(i.balance);
-}
-
-balances.forEach(addBalances);
+balancesNum.forEach(addBalances);
 
 function addBalances(item) {
     sum += item;
 }
 
 console.log('Sum of balances: ' + sum);
-
-
-
-// Вивести масив телефонних номерів користувачів, у яких баланс більше 2000 доларів
-
-let phones = [];
-
-for (let i of users) {
-    if (i.balance >= 2000) {
-        phones.push(i.phone);
-    }
-}
-
-console.log('Filtered phone numbers: ' + phones);
