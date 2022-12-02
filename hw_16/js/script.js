@@ -3,21 +3,13 @@
 
 const array = ['a', 6, 76, 4, 'fjf', undefined];
 
-const arrayNumbers = array.filter(ele => typeof ele === 'number');
+const arrayNum = array.filter(ele => typeof ele === 'number');
 
-const average = (arr) => {
-    let sum = 0;
-    for (let i of arr) {
-        sum += i;
-    }
-    const mathAv = sum / arr.length;
-    return mathAv;
-}
+const sum = arrayNum.reduce((total, num) => total + num);
 
-const resultAverage = average(arrayNumbers);
+const resultAverage = sum / arrayNum.length;
 
 console.log(array);
-console.log(arrayNumbers);
 console.log(resultAverage);
 
 
