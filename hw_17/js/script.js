@@ -4,7 +4,7 @@
 
 function pow(num, degree) {
     if (degree < 0) {
-        throw Error('Please enter a positive value');
+        return pow(num, degree + 1)/num;
     } else if (degree === 0) {
         return 1;
     } else {
@@ -15,5 +15,5 @@ function pow(num, degree) {
 const userNum = Number(prompt('Please enter the base number: '));
 const userPower = Number(prompt('Please enter the power: '));
 
-console.log(pow(userNum, userPower));
-
+console.log(`JS pow: ${Math.pow(userNum, userPower)}`);
+console.log(`Custom pow: ${pow(userNum, userPower)}`);
