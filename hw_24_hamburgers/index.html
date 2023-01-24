@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Homework</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Construct your burger!</h1>
+        <form action="" id="form">
+            <div>
+                <h2>Choose the size:</h2>
+                <input type="radio" id="small" name="size" value="SIZE.SMALL" required>
+                <label for="small">Small</label>
+                <input type="radio" id="big" name="size" value="SIZE.BIG" required>
+                <label for="big">Big</label>
+            </div>
+            <div>
+                <h2>Choose the stuffing:</h2>
+                <input type="radio" id="cheese" name="stuffing" required>
+                <label for="cheese">Cheese</label>
+                <input type="radio" id="salad" name="stuffing" required>
+                <label for="salad">Salad</label>
+                <input type="radio" id="potatoes" name="stuffing" required>
+                <label for="potatoes">Potatoes</label>
+            </div>
+            <div>
+                <h2>Choose your topping:</h2>
+                <input type="checkbox" id="spices" name="topping">
+                <label for="spices">Spices</label>
+                <input type="checkbox" id="mayo" name="topping">
+                <label for="mayo">Mayo</label>
+            </div>
+            <div>
+                <button id="btn">Submit</button>
+            </div>
+        </form>
+        <p id="output"></p>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
