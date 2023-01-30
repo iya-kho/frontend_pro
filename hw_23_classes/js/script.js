@@ -46,6 +46,8 @@ class Car extends Person {
 
 }
 
+// Check
+
 let person1 = new Person('Anna', 15);
 let person2 = new Person('Stepan', 36);
 let person3 = new Person('Olga', 21);
@@ -61,6 +63,7 @@ car3.setOwner(person3);
 car1.showCarInfo();
 car2.showCarInfo();
 car3.showCarInfo();
+
 
 
 
