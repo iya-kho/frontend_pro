@@ -2,76 +2,73 @@
 
 const students = [
     {
-        fName: 'Bill',
-        lName: 'Clinton',
+        name: 'Bill',
+        surname: 'Clinton',
         age: 20,
         marks: [3, 3, 5, 8, 4]
     },
     {
-        fName: 'Will',
-        lName: 'Smith',
+        name: 'Will',
+        surname: 'Smith',
         age: 19,
         marks: [10, 3, 7, 8, 1]
     },
     {
-        fName: 'Angelina',
-        lName: 'Jolie',
+        name: 'Angelina',
+        surname: 'Jolie',
         age: 24,
         marks: [6, 6, 5, 10, 3]
     },
     {
-        fName: 'Tina',
-        lName: 'Turner',
+        name: 'Tina',
+        surname: 'Turner',
         age: 17,
         marks: [10, 9, 9, 4, 9]
     },
     {
-        fName: 'Laura',
-        lName: 'Palmer',
+        name: 'Laura',
+        surname: 'Palmer',
         age: 22,
         marks: [5, 7, 3, 10, 4]
     },
     {
-        fName: 'Jacky',
-        lName: 'Chan',
+        name: 'Jacky',
+        surname: 'Chan',
         age: 26,
         marks: [6, 8, 5, 10, 1]
     },
     {
-        fName: 'Timothy',
-        lName: 'Chalamet',
+        name: 'Timothy',
+        surname: 'Chalamet',
         age: 18,
         marks: [8, 10, 5, 9, 9]
     },
     {
-        fName: 'Lea',
-        lName: 'Seydoux',
+        name: 'Lea',
+        surname: 'Seydoux',
         age: 23,
         marks: [10, 5, 7, 7, 1]
     },
 ]
 
-const maxMark = 10;
-
-
 // 1. Створити Human, який приймає в аргументи об'єкт і створює властивості name, surname та age.
 // Human також містить методи:
-// getFullName() - віддає стрінгу повного ім'я, утвореного з name, surname,
+// getFulsurname() - віддає стрінгу повного ім'я, утвореного з name, surname,
 // setFullName(fullName) - розбиває рядок на name, surname
 
 class Human {
-    constructor({ fName, lName, age }) {
-        this.fName = fName;
-        this.lName = lName;
+    constructor({ name, surname, age }) {
+        this.name = name;
+        this.surname = surname;
         this.age = age;
     }
 
     getFullName() {
-        return this.fullName = `${this.fName} ${this.lName}`;
+        return this.fullName = `${this.name} ${this.surname}`;
     }
 
     setFullName() {
-        [this.fName, this.lName] = this.fullName.split(' ');
+        [this.name, this.surname] = this.fullName.split(' ');
     }
 }
 
@@ -84,8 +81,10 @@ class Human {
 // getMaxMark() - повертає максимальну оцінку
 
 class Student extends Human {
-    constructor({ fName, lName, age, marks }) {
-        super({ fName, lName, age } );
+    static maxMark = 10;
+
+    constructor({ name, surname, age, marks }) {
+        super({ name, surname, age } );
         this.marks = marks;
     }
 
@@ -107,12 +106,12 @@ class Student extends Human {
 class FakeStudent extends Student {
     #cheatedmarks = this.#cheat(this.marks);
 
-    constructor({ fName, lName, age, marks }) {
-        super({ fName, lName, age, marks });
+    constructor({ name, surname, age, marks }) {
+        super({ name, surname, age, marks });
     }
 
     #cheat(values) {
-        return values.map(value => value * 2 > maxMark ? value = maxMark : value *= 2 ) 
+        return values.map(value => value * 2 > Student.maxMark ? value = Student.maxMark : value *= 2 ) 
     }
 
     getAverageMark() {
@@ -132,7 +131,7 @@ class FakeStudent extends Student {
 // 3. Створити клас Teacher який приймає в аргументи об'єкт
 // і створює проперті group(масив не менше 5 - ти студентів створених за допомогою класа Student)
 // та містить методи
-// getListOfNamesByAverageMark() - віддає масив імен студентів відсортований за найвищою середньою оцінкою.
+// getListOfnamesByAverageMark() - віддає масив імен студентів відсортований за найвищою середньою оцінкою.
 // getStudentByName(name) - отримати один об'єкт студента за ім'ям.
 // removeStudentByName(name) - видалити об'єкт студента, знайденого за ім'ям.
 // updateStudentByName(new Student(...), name) - знайти об'єкт студента по name та замінити на student (новий екземпляр класа Student)
@@ -140,8 +139,8 @@ class FakeStudent extends Student {
 // 3.1 Створити метод, що шукає fakeStudent
 
 class Teacher extends Human {
-    constructor({ fName, lName, age, group }) {
-        super({ fName, lName, age });
+    constructor({ name, surname, age, group }) {
+        super({ name, surname, age });
         this.group = group;
     }
 
@@ -159,22 +158,25 @@ class Teacher extends Human {
     }
 
     removeStudentByName(name) {
-        this.group = this.group.filter(element => element.getFullName() != name);
+        this.group = this.group.filter(element => element.getFullName() !== name);
 
         return this.group;
     }
 
     updateStudentByName(newStudent, name) {
-        this.removeStudentByName(name);
-        this.group.push(newStudent);
+        this.group.forEach((element, index, array) => {
+            if (element.getFullName() === name) {
+                array[index] = newStudent;
+            }
+        })
 
         return this.group;
     }
 
     findFakeStudent() {
-        const fakeStudent = this.group.filter(element => element.getMinMark() != Math.min(...element.marks));
+        const fakeStudent = this.group.find(element => element.getMinMark() !== Math.min(...element.marks));
 
-        return `Fake student: ${fakeStudent[0].getFullName()}. Marks: ${fakeStudent[0].marks}`;
+        return `Fake student: ${fakeStudent.getFullName()}. Marks: ${fakeStudent.marks}`;
     }
 }
 
@@ -187,7 +189,11 @@ let student5 = new Student(students[4]);
 
 let fakeStudent = new FakeStudent(students[5]);
 
-let teacher = new Teacher({ fName: 'Nick', lName: 'Cave', age: 40, group: [student1, student2, student3, student4, student5, fakeStudent] });
+let teacher = new Teacher({ name: 'Nick', surname: 'Cave', age: 40, group: [student1, student2, student3, student4, student5, fakeStudent] });
+
+console.log(teacher.updateStudentByName({ name: 'Anna', surname: 'Kuts', age: 20, marks: [] }, 'Tina Turner'));
+
+
 
 
 
