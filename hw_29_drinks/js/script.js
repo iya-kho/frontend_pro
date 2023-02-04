@@ -6,18 +6,15 @@ let list = document.querySelector('#drinks-list');
 
 function displayUniqueSorted(ul) {
 
-    let arrUniqueSorted = Array.from(ul.children).map(liElem =>
-        liElem.textContent
-    ).filter((element, index, array) =>
-        array.indexOf(element) === index
-    ).sort();
+    let arrUniqueSorted = Array.from(ul.children)
+        .map((liElem) => liElem.textContent)
+        .filter((element, index, array) => array.indexOf(element) === index)
+        .sort();
 
     ul.innerHTML = '';
 
-    arrUniqueSorted.map(element => {
-        let li = document.createElement('li');
-        li.textContent = element;
-        ul.append(li);
+    arrUniqueSorted.forEach((value) => {
+        ul.innerHTML += `<li>${value}</li>`;
     });
 }
 
