@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul>li {
+            cursor: pointer;
+            width: 200px;
+        }
+
+        .selected {
+            background-color: pink;
+        }
+    </style>
+    <script defer src="js/script.js"></script>
+</head>
+
+<body>
+    <h1>Daily tasks</h1>
+    <div id="menu">
+        <button data-action="addStart">Add an item to the beginning</button>
+        <button data-action="addEnd">Add an item to the end</button>
+        <button data-action="delete">Delete selected items</button>
+        <button data-action="sort">Sort the items</button>
+    </div>
+    <ul id="ul">
+        <li>Go to a shop</li>
+        <li>Read a book</li>
+        <li>Phone to a friend</li>
+        <li>Get some work</li>
+        <li>Meet guests</li>
+    </ul>
+
+</body>
+
+</html>
