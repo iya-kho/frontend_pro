@@ -110,18 +110,30 @@ class Snake extends Grid {
     }
 
     #noWallMode() {
+        let snakePartToShift;
+
         if (this.#snake[0].cell === 0 && this.direction === D.LEFT) {
-            this.#snake[0].cell = this.gridCount - 1;
+            snakePartToShift = { cell: this.gridCount - 1, row: this.#snake[1].row };
+            this.#snake.unshift(snakePartToShift);
+            this.#snake.pop();
         } else if (this.#snake[0].cell === this.gridCount - 1 && this.direction === D.RIGHT) {
-            this.#snake[0].cell = 0;
+            snakePartToShift = { cell: 0, row: this.#snake[1].row };
+            this.#snake.unshift(snakePartToShift);
+            this.#snake.pop();
         } else if (this.#snake[0].row === 0 && this.direction === D.UP) {
-            this.#snake[0].row = this.gridCount - 1;
+            snakePartToShift = { cell: this.#snake[1].cell, row: this.gridCount - 1 };
+            this.#snake.unshift(snakePartToShift);
+            this.#snake.pop();
         } else if (this.#snake[0].row === this.gridCount - 1 && this.direction === D.DOWN) {
-            this.#snake[0].row = 0;
+            snakePartToShift = { cell: this.#snake[1].cell, row: 0 };
+            this.#snake.unshift(snakePartToShift);
+            this.#snake.pop();
         }
 
+        
+
         return this.#snake[0];
-    }
+    } 
      
     #generateFood() {
         this.#foodContainer.innerHTML = '';
