@@ -14,36 +14,37 @@ let menu = document.querySelector('#menu');
 
 class Menu {
     constructor(elem) {
-        this._elem = elem;
+        this.elem = elem;
         elem.onclick = this.onClick.bind(this);
     }
 
-    addStart() {
+    add(position) {
         let newItem = document.createElement('li');
         newItem.textContent = listItems[Math.floor(Math.random() * listItems.length)];
-        ul.prepend(newItem);
+        switch (position) {
+            case 'start':
+                ul.prepend(newItem);
+                break;
+            case 'end':
+                ul.append(newItem);
+        }
     }
 
-    addEnd() {
-        let newItem = document.createElement('li');
-        newItem.textContent = listItems[Math.floor(Math.random() * listItems.length)];
-        ul.append(newItem);
-    }
-
-    delete() {
-        let selectedItems = Array.from(ul.children).filter(item => item.classList.contains('selected'));
-        selectedItems.forEach(item => item.remove());
-    }
-
-    sort() {
-        let selectedItems = Array.from(ul.children).filter(item => item.classList.contains('selected'));
-        selectedItems.reverse().forEach(item => ul.prepend(item));
+    actionOnSorted(action) {
+        let selectedItems = Array.from(ul.querySelectorAll('.selected'));
+        switch (action) {
+            case 'delete':
+                selectedItems.forEach(item => item.remove());
+                break;
+            case 'sort':
+                selectedItems.reverse().forEach(item => ul.prepend(item));
+        }
     }
 
     onClick(event) {
         let action = event.target.dataset.action;
         if (action) {
-            this[action]();
+            this[action](event.target.dataset.argument);
         }
     }
 }
@@ -55,21 +56,17 @@ ul.addEventListener('mousedown', function (e) {
 })
 
 ul.addEventListener('click', function (e) {
-    if (e.target == this) {
+    if (e.target === this) {
         return false;
     }
 
-    if (!e.ctrlKey && !e.metaKey && !e.shiftKey) {
-        clearSelected(this.children);
-        addSelected(e.target);
-    }   
-
     if (e.ctrlKey || e.metaKey) {
         toggleSelected(e.target);
-    }
-
-    if (e.shiftKey) {
-        addGroup(e.target, Array.from(this.children));
+    } else if (e.shiftKey) {
+        selectRange(e.target, Array.from(this.children));
+    } else {
+        clearSelected(this.children);
+        addSelected(e.target);
     }
 
 })
@@ -89,44 +86,22 @@ function toggleSelected(target) {
     target.classList.toggle('selected');
 }
 
-function addGroup(target, items) {
+function selectRange(target, items) {
 
-    let itemsToSelect = [];
-
-    let itemsToRemove = [];
-
-    let selectedItems = items.filter(item => item.classList.contains('selected') && item !== target);
+    let selectedItems = Array.from(ul.querySelectorAll('.selected'));
+    clearSelected(selectedItems);
 
     if (selectedItems.length === 0) {
-        for (i = 0; i <= items.indexOf(target); i++) {
-            itemsToSelect.push(items[i]);
+        for (let i = 0; i <= items.indexOf(target); i++) {
+            addSelected(items[i]);
         }
     } else if (items.indexOf(selectedItems[0]) < items.indexOf(target)) {
-        for (i = items.indexOf(selectedItems.at(-1)); i <= items.indexOf(target); i++) {
-            itemsToSelect.push(items[i]);
+        for (let i = items.indexOf(selectedItems.at(-1)); i <= items.indexOf(target); i++) {
+            addSelected(items[i]);
         }
-        if (selectedItems.length > 1) {
-            for (i = 0; i < (selectedItems.length - 1); i++) {
-                itemsToRemove.push(selectedItems[i]);
-            }
-        }
-
-    } else if (items.indexOf(selectedItems[0]) > items.indexOf(target)) {
-        for (i = items.indexOf(target); i <= items.indexOf(selectedItems[0]); i++) {
-            itemsToSelect.push(items[i]);
-        }
-
-        if (selectedItems.length > 1) {
-            for (i = 1; i < selectedItems.length; i++) {
-                itemsToRemove.push(selectedItems[i]);
-            }
+    } else {
+        for (let i = items.indexOf(target); i <= items.indexOf(selectedItems[0]); i++) {
+            addSelected(items[i]);
         }
     }
-
-
-    itemsToSelect.forEach(addSelected);
-    clearSelected(itemsToRemove);
 }
-
-    
-
