@@ -64,12 +64,12 @@ export const Helpers = {
         return city;
     },
 
-    async showWeatherStart(city, dropdown) {
-        Array.from(dropdown.options).map((option) => {
+    async showWeatherSelect(city, select) {
+        Array.from(select.options).map((option) => {
             if (option.text === city) {
                 option.setAttribute('selected', 'selected');
             } else {
-                dropdown.options[0].setAttribute('selected', 'selected');
+                select.options[0].setAttribute('selected', 'selected');
             }
         })
     },
@@ -91,4 +91,4 @@ export const Helpers = {
 
 }
 
-export const { getWeatherbyCoords, getCoordsbyCity, getCitybyCoords, showWeatherStart, getTimeDate } = Helpers;
+export const { getWeatherbyCoords, getCoordsbyCity, getCitybyCoords, showWeatherSelect, getTimeDate } = Helpers;

@@ -1,4 +1,6 @@
-import { getCitybyCoords, getCoordsbyCity, getTimeDate, getWeatherbyCoords, showWeatherStart } from "./js/helpers.js";
+import "./style/main.css";
+
+import { getCitybyCoords, getCoordsbyCity, getTimeDate, getWeatherbyCoords, showWeatherSelect } from "./js/helpers.js";
 
 // Find DOM elements
 
@@ -59,19 +61,25 @@ navigator.geolocation.getCurrentPosition(
     async (data) => {
         let coords = { lat: data.coords.latitude, lon: data.coords.longitude }
         city = await getCitybyCoords(coords);
-        showWeatherStart(city, dropdown);
+        showWeatherSelect(city, dropdown);
         showWeather(null, coords);
     },
 
     async (error) => {
-        let coords = JSON.parse(localStorage.coords);
-        city = await getCitybyCoords(coords);
-        if (city.length >= 20) {
-            locationBox.classList.add('reduce-font');
+        console.log(error);
+
+        if (localStorage.coords) {
+            let coords = JSON.parse(localStorage.coords);
+            city = await getCitybyCoords(coords);
+            if (city.length >= 20) {
+                locationBox.classList.add('reduce-font');
+            }
+            showWeatherSelect(city, dropdown);
+            showWeather(null, coords);
+        } else {
+            showWeather(null);
         }
-        showWeatherStart(city, dropdown);
-        showWeather(null, coords);
-        console.log(error)
+        
     }
 )
 
