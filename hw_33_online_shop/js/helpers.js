@@ -132,19 +132,19 @@ export const Helpers = {
                             <label for="form-description">Description:</label>
                             ${product ?
                             `<input type="text" class="form-control" name="description" value="${product.description}" required>` :
-                            `<input type="text" class="form-control" name="description" value=""> required`}
+                            `<input type="text" class="form-control" name="description" value="" required> `}
                             </div>
                             <div class="form-group">
                             <label for="form-categoryID">Category ID:</label>
                             ${product ?
                             `<input type="text" class="form-control" name="categoryID" value="${product.category.id}" required>` :
-                            `<input type="text" class="form-control" name="categoryID" value=""> required`}
+                            `<input type="text" class="form-control" name="categoryID" value="" required> `}
                             </div>
                             <div class="form-group">
                             <label for="form-img">Image (URL):</label>
                             ${product ?
                             `<input type="text" class="form-control" name="images" value="${product.images[0]}" required>` :
-                            `<input type="text" class="form-control" name="images" value="">`}
+                            `<input type="text" class="form-control" name="images" value="" required>`}
                             </div>
                             <button type="submit" class="button button-hero" id="form-btn">Submit</button>
                         </form>
