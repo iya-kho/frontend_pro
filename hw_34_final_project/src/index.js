@@ -4,18 +4,18 @@ import { getCitybyCoords, getCoordsbyCity, getTimeDate, getWeatherbyCoords, show
 
 // Find DOM elements
 
-let dropdown = document.querySelector('#dropdown');
-let weatherBox = document.querySelector('#weather-container');
-let timeBox = weatherBox.querySelector('.time-date');
-let locationBox = weatherBox.querySelector('.location');
-let tempBoxes = Array.from(document.querySelectorAll('.temp'));
-let iconBoxes = Array.from(document.querySelectorAll('.icon'));
-let weatherDescrBox = weatherBox.querySelector('.weather-description');
-let weatherDescrCenterBox = document.querySelector('.weather-description.center')
-let windBox = weatherBox.querySelector('.wind-text');
-let presBox = weatherBox.querySelector('.pressure-text');
-let humBox = weatherBox.querySelector('.humidity-text');
-let visBox = weatherBox.querySelector('.visibility-text');
+const dropdown = document.querySelector('#dropdown');
+const weatherBox = document.querySelector('#weather-container');
+const timeBox = weatherBox.querySelector('.time-date');
+const locationBox = weatherBox.querySelector('.location');
+const tempBoxes = Array.from(document.querySelectorAll('.temp'));
+const iconBoxes = Array.from(document.querySelectorAll('.icon'));
+const weatherDescrBox = weatherBox.querySelector('.weather-description');
+const weatherDescrCenterBox = document.querySelector('.weather-description.center')
+const windBox = weatherBox.querySelector('.wind-text');
+const presBox = weatherBox.querySelector('.pressure-text');
+const humBox = weatherBox.querySelector('.humidity-text');
+const visBox = weatherBox.querySelector('.visibility-text');
 
 // Get the weather data and show it in DOM
 
