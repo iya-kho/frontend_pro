@@ -3,17 +3,12 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
-  userName: Yup.string()
-    .required('User name is required'),
-  email: Yup.string()
-    .email('Invalid email')
-    .required('Email is required'),
+  userName: Yup.string().required('User name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
   phone: Yup.string()
     .required('Phone number is required')
     .matches(/^\d{12}$/, 'Invalid phone number'),
 });
-
-
 
 export const ValidationSchemaExample = () => (
   <div className="bg-neutral-100 w-96 mt-12 container px-3 py-3 content-center">

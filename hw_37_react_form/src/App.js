@@ -1,4 +1,4 @@
-import { ValidationSchemaExample } from "./components/FormikForm.jsx";
+import { ValidationSchemaExample } from './components/FormikForm.jsx';
 
 import './App.css';
 
