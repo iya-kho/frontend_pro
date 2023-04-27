@@ -1,0 +1,43 @@
+ .my-btn {
+    height: 65px;
+    margin-top: -1px;
+    padding: 0 30px;
+ }
+
+ .my-sidebar {
+   height: 410px;
+ }
+
+ .my-title {
+    max-width: 700px;
+ }
+
+ .my-container {
+      margin: 50px auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 200px;
+ }
+
+ .my-container > * {
+  margin-bottom: 30px;
+ }
+
+ .emoji-wrap {
+  display: flex;
+ }
+
+ .emoji-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ }
+
+ .emoji-line span {
+  margin-right: 10px;
+ }
+
+ .emoji-line button {
+  margin-right: 30px;
+ }
