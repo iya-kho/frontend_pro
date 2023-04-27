@@ -10,7 +10,7 @@ const SignupSchema = Yup.object().shape({
     .matches(/^\d{12}$/, 'Invalid phone number'),
 });
 
-export const ValidationSchemaExample = () => (
+export const FormValidated = () => (
   <div className="bg-neutral-100 w-96 mt-12 container px-3 py-3 content-center">
     <h1 className="text-2xl font-semibold mb-6 text-center">Sign up</h1>
     <Formik
