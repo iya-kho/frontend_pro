@@ -23,8 +23,15 @@ export class Emoji extends Component {
         const emojis = { ...this.state.emojis };
         emojis[keyName] += 1;
         const winner = Object.keys(emojis).reduce((a, b) => emojis[a] > emojis[b] ? a : b);
-        this.setState({ emojis });
-        this.setState({ winner });
+        // this.setState({ emojis });
+        // this.setState({ winner });
+        this.setState(state => {
+            return {
+                winner: winner,
+                emojis: emojis,
+                winnerIsShown: false
+            }
+        })
     }
 
     showLine(keyName) {
