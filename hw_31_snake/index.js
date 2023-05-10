@@ -114,7 +114,6 @@ class Snake extends Grid {
 
         if (this.#snake[0].cell === 0 && this.direction === D.LEFT) {
             snakePartToShift = { cell: this.gridCount - 1, row: this.#snake[1].row };
-            console.log(snakePartToShift);
             this.#snake.unshift(snakePartToShift);
             this.#snake.pop();
         } else if (this.#snake[0].cell === this.gridCount - 1 && this.direction === D.RIGHT) {
