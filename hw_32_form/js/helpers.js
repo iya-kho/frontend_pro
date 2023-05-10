@@ -1,4 +1,4 @@
-export const Manipulator = {
+export const Helpers = {
 
     findinDoc: (container) => {
         return (selector) => container.querySelector(`[data-for="${selector}"]`);

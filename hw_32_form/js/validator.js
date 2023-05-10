@@ -16,7 +16,7 @@ export const Validator = {
             message: "The field must be an integer",
             errorType: 'number'
         },
-        length({ minLength = 1, maxLength = 50 }) {
+        isBetween({ minLength = 1, maxLength = 50 }) {
             return {
                 validate: (value) => value.length >= minLength && value.length <= maxLength,
                 message: `The field must be between ${minLength} and ${maxLength} characters`,
@@ -75,16 +75,16 @@ export const Validator = {
             })
         }
 
-        return !this._hasError(form.name);
+        return !this.hasError(form.name);
     },
 
     getErrors(formName) {
        return this.errors[formName];
     },
 
-    _hasError(formName) {
+    hasError(formName) {
         return !!Object.keys(this.errors[formName]).length;
     }
 }
 
-export const { isNotEmpty, isNumber, length, validateEmail, saveValue, isSameValue } = Validator.validators;
+export const { isNotEmpty, isNumber, isBetween, validateEmail, saveValue, isSameValue } = Validator.validators;
