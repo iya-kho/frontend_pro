@@ -114,6 +114,7 @@ class Snake extends Grid {
 
         if (this.#snake[0].cell === 0 && this.direction === D.LEFT) {
             snakePartToShift = { cell: this.gridCount - 1, row: this.#snake[1].row };
+            console.log(snakePartToShift);
             this.#snake.unshift(snakePartToShift);
             this.#snake.pop();
         } else if (this.#snake[0].cell === this.gridCount - 1 && this.direction === D.RIGHT) {
@@ -131,10 +132,16 @@ class Snake extends Grid {
         }
 
         
-
         return this.#snake[0];
+   
     } 
-     
+    
+    #generateRandom(minVal, maxVal) {
+        let random = Math.floor(Math.random() * (maxVal - minVal + 1)) + minVal;
+
+        return random;
+    }
+
     #generateFood() {
         this.#foodContainer.innerHTML = '';
 
@@ -142,11 +149,11 @@ class Snake extends Grid {
         const max = this.gridCount - 1;
 
         do {
-            let row = Math.floor(Math.random() * (max - min + 1)) + min;
-            let cell = Math.floor(Math.random() * (max - min + 1)) + min;
+            let row = this.#generateRandom(min, max);
+            let cell = this.#generateRandom(min, max);
             this.#foodCoords = { cell: cell, row: row };
             this.#foodContainer = this.#findByCoords(this.#foodCoords);
-        } while (this.#foodContainer.classList.contains('snake'));
+        } while (this.#foodContainer.classList.contains(Snake.snakeCssClass));
 
         this.#foodContainer.innerHTML = '<img src="img/apple.png" alt="">';
     }
@@ -176,27 +183,21 @@ class Snake extends Grid {
 
     #checkTailCrash() {
         let isDuplicate = false;
-        for (let i in this.#snake) {
-            for (let j in this.#snake) {
-                if (i !== j && JSON.stringify(this.#snake[i]) === JSON.stringify(this.#snake[j])) {
-                    isDuplicate = true;
-                    break
-                }
+        this.#snake.slice(1).forEach(part => {
+            if (part.cell === this.#snake[0].cell && part.row === this.#snake[0].row) {
+                isDuplicate = true;
             }
-            if (isDuplicate) {
-                break; 
-            }
-        }
+        })
 
         return isDuplicate;
     }
 
     #checkIfFoodEaten() {
         let foodEaten = false;
-        if (JSON.stringify(this.#snake[0]) === JSON.stringify(this.#foodCoords)) {
+        if (this.#snake[0].cell === this.#foodCoords.cell && this.#snake[0].row === this.#foodCoords.row) {
             foodEaten = true;
             this.#score++;
-            this.#scoreContainer.firstElementChild.textContent = `${this.#score}`;
+            this.#scoreContainer.innerHTML = `Score: <b> ${this.#score} </b>`;
             if (this.#score < this.scoreToWin) {
                 this.#generateFood();
             }
