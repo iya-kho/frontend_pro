@@ -1,10 +1,12 @@
+import { linkWeatherbyCoords, linkCoordsbyCity, linkCitybyCoords } from "./environmentConfigs.js";
+
 export const Helpers = {
 
-    async getWeatherbyCoords({ lat, lon }) {
+    async getData(link) {
         let data;
 
         try {
-            let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=817ee402db4510ccfef28a1daa72266d&units=metric`);
+            let response = await fetch(link);
             data = await response.json();
 
             if (!response.ok) {
@@ -16,26 +18,18 @@ export const Helpers = {
         }
 
         return data;
+    },
+
+    async getWeatherbyCoords({ lat, lon }) {
+        let data = await getData(linkWeatherbyCoords({ lat, lon }));
+        
+        return data;
 
     },
 
     async getCoordsbyCity(city) {
-        let data;
-        let coords;
-
-        try {
-            let response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=817ee402db4510ccfef28a1daa72266d`);
-            data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(`${data.error}: ${data.message}`);
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
-
-        coords = {
+        let data = await getData(linkCoordsbyCity(city));
+        let coords = {
             lat: data[0].lat,
             lon: data[0].lon
         }
@@ -44,28 +38,14 @@ export const Helpers = {
     },
 
     async getCitybyCoords({ lat, lon }) {
-        let data;
-        let city;
-
-        try {
-            let response = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=817ee402db4510ccfef28a1daa72266d`);
-            data = await response.json();
-
-            if (!response.ok) {
-                throw new Error(`${data.error}: ${data.message}`);
-            }
-
-        } catch (error) {
-            console.log(error);
-        }
-
-        city = data[0].name;
+        let data = await getData(linkCitybyCoords({ lat, lon }));
+        let city = data[0].name;
 
         return city;
     },
 
     async showWeatherSelect(city, select) {
-        Array.from(select.options).map((option) => {
+        Array.from(select.options).forEach((option) => {
             if (option.text === city) {
                 option.setAttribute('selected', 'selected');
             } else {
@@ -91,4 +71,4 @@ export const Helpers = {
 
 }
 
-export const { getWeatherbyCoords, getCoordsbyCity, getCitybyCoords, showWeatherSelect, getTimeDate } = Helpers;
+export const { getWeatherbyCoords, getCoordsbyCity, getCitybyCoords, showWeatherSelect, getTimeDate, getData } = Helpers;

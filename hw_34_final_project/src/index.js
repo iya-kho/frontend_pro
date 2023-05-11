@@ -66,7 +66,7 @@ navigator.geolocation.getCurrentPosition(
     },
 
     async (error) => {
-        console.log(error);
+        console.error(error);
 
         if (localStorage.coords) {
             let coords = JSON.parse(localStorage.coords);
