@@ -1,0 +1,22 @@
+ .my-btn {
+    height: 65px;
+    margin-top: -1px;
+    padding: 0 30px;
+ }
+
+ .my-sidebar {
+   height: 410px;
+ }
+
+ .my-carousel {
+    height: 410px;
+ }
+
+ .my-title {
+    max-width: 700px;
+ }
+
+ .my-car-btn {
+    width: 45px; 
+    height: 45px;
+ }
