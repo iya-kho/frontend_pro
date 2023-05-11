@@ -1,0 +1,29 @@
+.site-main {
+    display: flex;
+}
+
+#descrContainer {
+    width: 40%;
+}
+
+.section-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.my-invisible {
+    display: none;
+}
+
+.my-fixed {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    width: 250px;
+    height: auto;
+}
+
+#form-container {
+    margin: 20px 20px;
+}
