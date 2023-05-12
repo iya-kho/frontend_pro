@@ -8,19 +8,12 @@ import { Emoji } from './components/emoji.js';
 export default function App() {
   return (
     <div className="container-fluid row border-top px-xl-5">
-      <Sidebar/>
+      <Sidebar />
       <div className="col-lg-9">
         <NavCenter />
-        <Emoji/>
+        <Emoji />
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }
-
-
-
-
-
-
-

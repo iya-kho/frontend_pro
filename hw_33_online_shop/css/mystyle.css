@@ -1,29 +1,29 @@
 .site-main {
-    display: flex;
+  display: flex;
 }
 
 #descrContainer {
-    width: 40%;
+  width: 40%;
 }
 
 .section-intro {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .my-invisible {
-    display: none;
+  display: none;
 }
 
 .my-fixed {
-    position: fixed;
-    top: 100px;
-    left: 20px;
-    width: 250px;
-    height: auto;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  width: 250px;
+  height: auto;
 }
 
 #form-container {
-    margin: 20px 20px;
+  margin: 20px 20px;
 }

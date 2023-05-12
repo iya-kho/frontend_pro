@@ -1,73 +1,63 @@
-import { environmentConfigs } from "./environmentConfigs.js";
+import { environmentConfigs } from './environmentConfigs.js';
 
 export const Helpers = {
+  async getData(request) {
+    let data;
 
-    async getData(request) {
-        let data;
+    try {
+      let response = request;
+      data = await response.json();
 
-        try {
-            let response = request;
-            data = await response.json();
-        
-            if (!response.ok) {
-                throw new Error(`${data.error}: ${data.message}`);
-            }
-        } catch (error) {
-            console.log(error);
-        }
+      if (!response.ok) {
+        throw new Error(`${data.error}: ${data.message}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
-        return data;
-    },
+    return data;
+  },
 
-    async getAllProducts() {
+  async getAllProducts() {
+    const products = getData(await fetch(`${environmentConfigs.link}?offset=0&limit=10`));
 
-        const products = getData(await fetch (`${environmentConfigs.link}?offset=0&limit=10`));
+    return products;
+  },
 
-        return products;
-    },
+  async createNewProduct(newProduct) {
+    let updatedProduct = getData(
+      await fetch(environmentConfigs.link, {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      })
+    );
 
-    async createNewProduct(newProduct) {
+    return updatedProduct;
+  },
 
-        let updatedProduct = getData(
-            await fetch (environmentConfigs.link,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(newProduct)
-                }
-        ))
+  async updateProduct(oldProduct, newProduct) {
+    let updatedProduct = getData(
+      await fetch(`${environmentConfigs.link}/${oldProduct.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      })
+    );
 
-        return updatedProduct;
-    },
+    return updatedProduct;
+  },
 
-    async updateProduct(oldProduct, newProduct) {
-        
-        let updatedProduct = getData(
-            await fetch (`${environmentConfigs.link}/${oldProduct.id}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify(newProduct)
-                }
-        ))
-
-        return updatedProduct;
-    },
-
-   
-    publishProducts(products, globalContainer, descrContainer) {
-        
-        products.forEach((product) => {
-
-            let productContainer = document.createElement('div');
-            productContainer.classList.add('product-container', 'col-md-6', 'col-lg-4', 'col-xl-3');
-            globalContainer.appendChild(productContainer);
-            productContainer.innerHTML +=
-                `<div class="card text-center card-product">
+  publishProducts(products, globalContainer, descrContainer) {
+    products.forEach(product => {
+      let productContainer = document.createElement('div');
+      productContainer.classList.add('product-container', 'col-md-6', 'col-lg-4', 'col-xl-3');
+      globalContainer.appendChild(productContainer);
+      productContainer.innerHTML += `<div class="card text-center card-product">
                 <div class="card-product__img">
                     <img class="card-img" src="${product.images[0]}" alt="${product.title}">
                     <ul class="card-product__imgOverlay">
@@ -83,25 +73,21 @@ export const Helpers = {
                     </div>
                     </div>`;
 
-            addCardBtnListeners(productContainer, product, globalContainer, descrContainer, products);
+      addCardBtnListeners(productContainer, product, globalContainer, descrContainer, products);
+    });
+  },
 
-        });
-              
-    },
-            
+  makeVisible(element) {
+    element.classList.remove('my-invisible');
+  },
 
-    makeVisible(element) {
-        element.classList.remove('my-invisible');
-    },
+  makeInvisible(element) {
+    element.classList.add('my-invisible');
+  },
 
-    makeInvisible(element) {
-        element.classList.add('my-invisible');
-    },
-
-    showForm(window, product) {
-
-        window.document.write(
-            `<html lang="en">
+  showForm(window, product) {
+    window.document.write(
+      `<html lang="en">
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,109 +104,124 @@ export const Helpers = {
                         <form action="#" id="product-form">
                             <div class="form-group">
                             <label for="form-title">Title:</label> 
-                            ${product ?
-                            `<input type="text" class="form-control" name="title" value="${product.title}"  required>` : 
-                            `<input type="text" class="form-control" name="title" value="" required>`}
+                            ${
+                              product
+                                ? `<input type="text" class="form-control" name="title" value="${product.title}"  required>`
+                                : `<input type="text" class="form-control" name="title" value="" required>`
+                            }
                             </div>
                             <div class="form-group">
                             <label for="form-price">Price ($):</label>
-                            ${product ?
-                            `<input type="text" class="form-control" name="price" value="${product.price}" required>` :
-                            `<input type="text" class="form-control" name="price" value="" required>`}
+                            ${
+                              product
+                                ? `<input type="text" class="form-control" name="price" value="${product.price}" required>`
+                                : `<input type="text" class="form-control" name="price" value="" required>`
+                            }
                             </div>
                             <div class="form-group">
                             <label for="form-description">Description:</label>
-                            ${product ?
-                            `<input type="text" class="form-control" name="description" value="${product.description}" required>` :
-                            `<input type="text" class="form-control" name="description" value="" required> `}
+                            ${
+                              product
+                                ? `<input type="text" class="form-control" name="description" value="${product.description}" required>`
+                                : `<input type="text" class="form-control" name="description" value="" required> `
+                            }
                             </div>
                             <div class="form-group">
                             <label for="form-categoryID">Category ID:</label>
-                            ${product ?
-                            `<input type="text" class="form-control" name="categoryID" value="${product.category.id}" required>` :
-                            `<input type="text" class="form-control" name="categoryID" value="" required> `}
+                            ${
+                              product
+                                ? `<input type="text" class="form-control" name="categoryID" value="${product.category.id}" required>`
+                                : `<input type="text" class="form-control" name="categoryID" value="" required> `
+                            }
                             </div>
                             <div class="form-group">
                             <label for="form-img">Image (URL):</label>
-                            ${product ?
-                            `<input type="text" class="form-control" name="images" value="${product.images[0]}" required>` :
-                            `<input type="text" class="form-control" name="images" value="" required>`}
+                            ${
+                              product
+                                ? `<input type="text" class="form-control" name="images" value="${product.images[0]}" required>`
+                                : `<input type="text" class="form-control" name="images" value="" required>`
+                            }
                             </div>
                             <button type="submit" class="button button-hero" id="form-btn">Submit</button>
                         </form>
                     </div>
                 </body>
             </html>`
-        );
-    }, 
+    );
+  },
 
-    editAddProducts(product, products, globalContainer, descrContainer) {
+  editAddProducts(product, products, globalContainer, descrContainer) {
+    let formWin = window.open('about:blank', 'form', 'popup');
+    showForm(formWin, product);
 
-        let formWin = window.open("about:blank", "form", "popup");
-        showForm(formWin, product);
+    formWin.addEventListener('submit', async e => {
+      e.preventDefault();
+      let form = e.target;
 
-        formWin.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            let form = e.target;
+      let newProductData = {
+        title: form.title.value,
+        price: form.price.value,
+        description: form.description.value,
+        categoryId: form.categoryID.value,
+        images: [form.images.value],
+      };
 
-            let newProductData = {
-                title: form.title.value,
-                price: form.price.value,
-                description: form.description.value,
-                categoryId: form.categoryID.value,
-                images: [form.images.value]
-            }
+      let newProduct;
 
-            let newProduct;
+      if (!product) {
+        newProduct = await createNewProduct(newProductData);
+        products.push(newProduct);
+      } else {
+        let index = products.indexOf(product);
+        newProduct = await updateProduct(product, newProductData);
+        products[index] = newProduct;
+      }
 
-            if (!product) {
-                newProduct = await createNewProduct(newProductData);
-                products.push(newProduct);
-            } else {
-                let index = products.indexOf(product);
-                newProduct = await updateProduct(product, newProductData);
-                products[index] = newProduct;
-            }
+      formWin.close();
 
-            formWin.close();
-          
-            globalContainer.innerHTML = '';
-            publishProducts(products, globalContainer, descrContainer);
+      globalContainer.innerHTML = '';
+      publishProducts(products, globalContainer, descrContainer);
+    });
+  },
 
-        })
+  addCardBtnListeners(itemContainer, product, globalContainer, descrContainer, products) {
+    let descrBtn = itemContainer.querySelector('.btn-more');
+    let editBtn = itemContainer.querySelector('.btn-edit');
 
-        
-    },
+    descrBtn.addEventListener('click', () => {
+      descrContainer.innerHTML = itemContainer.innerHTML;
+      let cardDetails = descrContainer.querySelector('.card');
+      let descr = descrContainer.querySelector('.descr');
+      [descrContainer, descr].forEach(makeVisible);
+      cardDetails.classList.add('my-fixed');
+    });
 
-    addCardBtnListeners(itemContainer, product, globalContainer, descrContainer, products) {
+    editBtn.addEventListener('click', () =>
+      editAddProducts(product, products, globalContainer, descrContainer)
+    );
+  },
 
-        let descrBtn = itemContainer.querySelector('.btn-more');
-        let editBtn = itemContainer.querySelector('.btn-edit');
+  closeDescription(event, container) {
+    let target = event.target;
 
-        descrBtn.addEventListener('click', () => {
-            descrContainer.innerHTML = itemContainer.innerHTML;
-            let cardDetails = descrContainer.querySelector('.card');
-            let descr = descrContainer.querySelector('.descr');
-            [descrContainer, descr].forEach(makeVisible);
-            cardDetails.classList.add('my-fixed');
-        })
-
-
-        editBtn.addEventListener('click', () => editAddProducts(product, products, globalContainer, descrContainer));
-    }, 
-
-    closeDescription (event, container) {
-        let target = event.target;
-
-        if (target.tagName === 'BUTTON' || target.tagName === 'I') {
-            return false;
-        }
-
-        makeInvisible(container);
+    if (target.tagName === 'BUTTON' || target.tagName === 'I') {
+      return false;
     }
 
-}
+    makeInvisible(container);
+  },
+};
 
-export const { getData, getAllProducts, createNewProduct, updateProduct, publishProducts, makeVisible, makeInvisible,
-    showForm, editAddProducts, addCardBtnListeners, closeDescription } = Helpers;
-
+export const {
+  getData,
+  getAllProducts,
+  createNewProduct,
+  updateProduct,
+  publishProducts,
+  makeVisible,
+  makeInvisible,
+  showForm,
+  editAddProducts,
+  addCardBtnListeners,
+  closeDescription,
+} = Helpers;

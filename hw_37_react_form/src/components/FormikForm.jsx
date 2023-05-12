@@ -20,7 +20,7 @@ export const FormValidated = () => (
         phone: '',
       }}
       validationSchema={SignupSchema}
-      onSubmit={(values) => {
+      onSubmit={values => {
         alert(`Thank you, ${values.userName}!`);
       }}
     >

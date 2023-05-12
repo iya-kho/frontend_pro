@@ -1,52 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@codolog/form@1.0.0/dist/form.min.css">
-    <link rel="stylesheet" href="./style/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@codolog/form@1.0.0/dist/form.min.css"
+    />
+    <link rel="stylesheet" href="./style/main.css" />
     <script type="module" src="./index.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <main>
-        <div class="form-container">
-            <h1>Sign Up</h1>
-            <form name="registration">
-                <div class="form-field">
-                    <label class='form'>Username:</label>
-                    <input type='text' class='form' name="username" placeholder="Enter your username">
-                    <span class="message form" data-for="username"></span>
-                </div>
+      <div class="form-container">
+        <h1>Sign Up</h1>
+        <form name="registration">
+          <div class="form-field">
+            <label class="form">Username:</label>
+            <input type="text" class="form" name="username" placeholder="Enter your username" />
+            <span class="message form" data-for="username"></span>
+          </div>
 
-                <div class="form-field">
-                    <label class='form'>Email:</label>
-                    <input type='text' class='form' name="email" placeholder="hello@example.com">
-                    <span class="message form" data-for="email"></span>
-                </div>
+          <div class="form-field">
+            <label class="form">Email:</label>
+            <input type="text" class="form" name="email" placeholder="hello@example.com" />
+            <span class="message form" data-for="email"></span>
+          </div>
 
-                <div class="form-field">
-                    <label class='form'>Password:</label>
-                    <input type='password' class='form' name="password" placeholder="Enter your password">
-                    <span class="message form" data-for="password"></span>
-                </div>
+          <div class="form-field">
+            <label class="form">Password:</label>
+            <input type="password" class="form" name="password" placeholder="Enter your password" />
+            <span class="message form" data-for="password"></span>
+          </div>
 
-                <div class="form-field"> 
-                    <label class='form'>Confirm Password:</label>
-                    <input type='password' class='form' name="confirm-password" placeholder="Reenter your password">
-                    <span class="message form" data-for="confirm-password"></span>
-                </div>
+          <div class="form-field">
+            <label class="form">Confirm Password:</label>
+            <input
+              type="password"
+              class="form"
+              name="confirm-password"
+              placeholder="Reenter your password"
+            />
+            <span class="message form" data-for="confirm-password"></span>
+          </div>
 
-                <button id="send" class="form success btn-send" type="submit">SIGN UP</button>
-            </form>
-        </div>
+          <button id="send" class="form success btn-send" type="submit">SIGN UP</button>
+        </form>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>

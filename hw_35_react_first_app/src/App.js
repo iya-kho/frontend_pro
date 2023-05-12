@@ -9,9 +9,9 @@ const pics = [pic1, pic2];
 export default function App() {
   return (
     <div className="container-fluid row border-top px-xl-5">
-      <Sidebar/>
-      <Main/>
-      <Footer/>
+      <Sidebar />
+      <Main />
+      <Footer />
     </div>
   );
 }
@@ -19,7 +19,11 @@ export default function App() {
 function Sidebar() {
   return (
     <div className="col-lg-3 d-none d-lg-block">
-      <a className="my-btn btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical">
+      <a
+        className="my-btn btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+        data-toggle="collapse"
+        href="#navbar-vertical"
+      >
         <h6 className="m-0">Categories</h6>
         <i className="fa fa-angle-down text-dark"></i>
       </a>
@@ -43,15 +47,17 @@ function Sidebar() {
 
 function NavItem({ value, link }) {
   return (
-    <a href={link} className="nav-item nav-link">{value}</a>
-  )
+    <a href={link} className="nav-item nav-link">
+      {value}
+    </a>
+  );
 }
 
 function Main() {
   return (
     <div className="col-lg-9">
-      <NavCenter/>
-      <Carousel pictures={pics}/>
+      <NavCenter />
+      <Carousel pictures={pics} />
     </div>
   );
 }
@@ -75,7 +81,7 @@ function NavCenter() {
   );
 }
 
-function Carousel({pictures}) {
+function Carousel({ pictures }) {
   return (
     <div id="header-carousel" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
@@ -83,9 +89,13 @@ function Carousel({pictures}) {
           <img className="img-fluid" src={pictures[0]} alt="Image" />
           <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
             <div className="p-3 my-title">
-              <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+              <h4 className="text-light text-uppercase font-weight-medium mb-3">
+                10% Off Your First Order
+              </h4>
               <h3 className="display-4 text-white font-weight-semi-bold mb-4">Fashionable Dress</h3>
-              <a href="#" className="btn btn-light py-2 px-3">Shop Now</a>
+              <a href="#" className="btn btn-light py-2 px-3">
+                Shop Now
+              </a>
             </div>
           </div>
         </div>
@@ -93,9 +103,13 @@ function Carousel({pictures}) {
           <img className="img-fluid" src={pictures[1]} alt="Image" />
           <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
             <div className="p-3 my-title">
-              <h4 className="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+              <h4 className="text-light text-uppercase font-weight-medium mb-3">
+                10% Off Your First Order
+              </h4>
               <h3 className="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
-              <a href="#" className="btn btn-light py-2 px-3">Shop Now</a>
+              <a href="#" className="btn btn-light py-2 px-3">
+                Shop Now
+              </a>
             </div>
           </div>
         </div>
@@ -120,23 +134,30 @@ function Footer() {
       <div className="row px-xl-5 pt-5">
         <div className="col-md-4 mb-5">
           <a href="#" className="text-decoration-none">
-            <h1 className="mb-4 display-5 font-weight-semi-bold"><span
-              className="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
+            <h1 className="mb-4 display-5 font-weight-semi-bold">
+              <span className="text-primary font-weight-bold border border-white px-3 mr-1">E</span>
+              Shopper
+            </h1>
           </a>
         </div>
         <div className="col-md-4 mb-5">
-          <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore
-            amet
-            erat.
+          <p>
+            Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et
+            magna ipsum dolore amet erat.
           </p>
         </div>
         <div className="col-md-4 mb-5">
-          <p className="mb-2"><i className="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-          <p className="mb-2"><i className="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-          <p className="mb-0"><i className="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
+          <p className="mb-2">
+            <i className="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA
+          </p>
+          <p className="mb-2">
+            <i className="fa fa-envelope text-primary mr-3"></i>info@example.com
+          </p>
+          <p className="mb-0">
+            <i className="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890
+          </p>
         </div>
       </div>
     </div>
   );
 }
-

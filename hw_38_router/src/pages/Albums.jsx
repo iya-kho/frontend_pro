@@ -13,8 +13,8 @@ export function Albums() {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/albums?userId=${userInfo.userId}`
       )
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
+        .then(res => res.json())
+        .catch(err => console.log(err));
 
       setAlbums(response);
     }
@@ -29,7 +29,7 @@ export function Albums() {
       </h1>
       <ButtonBack />
       <div className="flex flex-wrap w-9/12 container justify-between my-6">
-        {albums.map((album) => (
+        {albums.map(album => (
           <div className="m-6 text-center">
             <Card title={album?.title} bordered={false} className="w-64 mb-4"></Card>
             <Link to="/photos" state={{ albumId: album?.id, albumTitle: album?.title }}>

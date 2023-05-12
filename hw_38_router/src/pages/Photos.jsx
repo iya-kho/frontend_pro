@@ -13,8 +13,8 @@ export function Photos() {
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/photos?albumId=${albumInfo.albumId}`
       )
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
+        .then(res => res.json())
+        .catch(err => console.log(err));
 
       setPhotos(response);
     }
@@ -29,7 +29,7 @@ export function Photos() {
       <h1 className="text-sky-950 text-center text-5xl font-semibold">{albumInfo.albumTitle}</h1>
       <ButtonBack />
       <div className="flex flex-wrap w-9/12 container justify-between my-6">
-        {photos.map((photo) => (
+        {photos.map(photo => (
           <Image className="mb-4" width={200} src={photo.url} />
         ))}
       </div>

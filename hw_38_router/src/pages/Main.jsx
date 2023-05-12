@@ -9,21 +9,20 @@ export function Main() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch('https://jsonplaceholder.typicode.com/users')
-        .then((res) => res.json())
-        .catch((err) => console.log(err));
+        .then(res => res.json())
+        .catch(err => console.log(err));
 
       setUsers(response);
     }
 
     fetchData();
   }, []);
-  
 
   return (
     <div className="bg-neutral-100 p-6">
       <h1 className="text-sky-950 text-center text-5xl font-semibold">Users</h1>
       <div className="flex flex-wrap w-9/12 container justify-between my-6">
-        {users.map((user) => (
+        {users.map(user => (
           <div className="m-6 text-center">
             <Card title={user?.name} bordered={false} className="w-64 mb-4">
               {user?.company.name}
