@@ -1,4 +1,4 @@
-import { getAllProducts, publishProducts, editProducts, closeDescription } from "./js/helpers.js";
+import { getAllProducts, publishProducts, editAddProducts, closeDescription } from "./js/helpers.js";
 
 let productsContainer = document.querySelector('#productsContainer');
 let descrContainer = document.querySelector('#descrContainer');
@@ -6,7 +6,6 @@ let newProdBtn = document.querySelector('#new-product-btn');
 
 document.addEventListener('DOMContentLoaded', async () => {
     let products = await getAllProducts();
-    console.log(products);
     
     publishProducts(products, productsContainer, descrContainer);
 
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     })
     
     newProdBtn.addEventListener('click', () => {
-        editProducts(null, products, productsContainer, descrContainer);    
+        editAddProducts(null, products, productsContainer, descrContainer);    
     })
     
 })
