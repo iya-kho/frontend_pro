@@ -1,7 +1,8 @@
+import { environmentConfigs } from "./environmentConfigs.js";
+
 export const Helpers = {
 
     async getData(request) {
-
         let data;
 
         try {
@@ -10,7 +11,6 @@ export const Helpers = {
         
             if (!response.ok) {
                 throw new Error(`${data.error}: ${data.message}`);
-        
             }
         } catch (error) {
             console.log(error);
@@ -21,7 +21,7 @@ export const Helpers = {
 
     async getAllProducts() {
 
-        const products = getData(await fetch (`https://api.escuelajs.co/api/v1/products?offset=0&limit=10`));
+        const products = getData(await fetch (`${environmentConfigs.link}?offset=0&limit=10`));
 
         return products;
     },
@@ -29,7 +29,7 @@ export const Helpers = {
     async createNewProduct(newProduct) {
 
         let updatedProduct = getData(
-            await fetch (`https://api.escuelajs.co/api/v1/products/`,
+            await fetch (environmentConfigs.link,
                 {
                     method: "POST",
                     headers: {
@@ -45,7 +45,7 @@ export const Helpers = {
     async updateProduct(oldProduct, newProduct) {
         
         let updatedProduct = getData(
-            await fetch (`https://api.escuelajs.co/api/v1/products/${oldProduct.id}`,
+            await fetch (`${environmentConfigs.link}/${oldProduct.id}`,
                 {
                     method: "PUT",
                     headers: {
@@ -154,7 +154,7 @@ export const Helpers = {
         );
     }, 
 
-    editProducts(product, products, globalContainer, descrContainer) {
+    editAddProducts(product, products, globalContainer, descrContainer) {
 
         let formWin = window.open("about:blank", "form", "popup");
         showForm(formWin, product);
@@ -201,13 +201,12 @@ export const Helpers = {
             descrContainer.innerHTML = itemContainer.innerHTML;
             let cardDetails = descrContainer.querySelector('.card');
             let descr = descrContainer.querySelector('.descr');
-            makeVisible(descrContainer);
-            makeVisible(descr);
+            [descrContainer, descr].forEach(makeVisible);
             cardDetails.classList.add('my-fixed');
         })
 
 
-        editBtn.addEventListener('click', () => editProducts(product, products, globalContainer, descrContainer));
+        editBtn.addEventListener('click', () => editAddProducts(product, products, globalContainer, descrContainer));
     }, 
 
     closeDescription (event, container) {
@@ -223,5 +222,5 @@ export const Helpers = {
 }
 
 export const { getData, getAllProducts, createNewProduct, updateProduct, publishProducts, makeVisible, makeInvisible,
-    showForm, editProducts, addCardBtnListeners, closeDescription } = Helpers;
+    showForm, editAddProducts, addCardBtnListeners, closeDescription } = Helpers;
 
