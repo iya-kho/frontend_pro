@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Card from '../components/Card.jsx';
-import Button from '../components/Button.jsx';
-import ButtonBack from '../components/ButtonBack.jsx';
+import { Card, Button, ButtonBack } from '../components/index.jsx';
 
 export function Albums() {
   const [albums, setAlbums] = useState([]);
@@ -23,8 +21,6 @@ export function Albums() {
 
     fetchData();
   }, []);
-
-  console.log(albums);
 
   return (
     <div className="bg-neutral-100 p-6">

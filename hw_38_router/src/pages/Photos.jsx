@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import Image from '../components/Image.jsx';
-import ButtonBack from '../components/ButtonBack.jsx';
+import { Image, ButtonBack } from '../components/index.jsx';
 
 export function Photos() {
   const [photos, setPhotos] = useState([]);

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Card from '../components/Card.jsx';
-import Button from '../components/Button.jsx';
+import { Card, Button } from '../components/index.jsx';
 
 export function Main() {
   const [users, setUsers] = useState([]);
@@ -18,8 +17,7 @@ export function Main() {
 
     fetchData();
   }, []);
-
-  console.log(users);
+  
 
   return (
     <div className="bg-neutral-100 p-6">
