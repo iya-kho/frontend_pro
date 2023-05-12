@@ -1,3 +1,9 @@
 practice/
 
+<<<<<<< HEAD
 node_modules/
+=======
+node_modules/
+
+.prettierrc.json
+>>>>>>> hw_37_form
