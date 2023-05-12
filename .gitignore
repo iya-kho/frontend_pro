@@ -1,9 +1,15 @@
 practice/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 node_modules/
 =======
 node_modules/
 
 .prettierrc.json
 >>>>>>> hw_37_form
+=======
+.prettierrc.json
+
+node_modules
+>>>>>>> hw_38_router
