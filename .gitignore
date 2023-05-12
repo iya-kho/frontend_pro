@@ -3,6 +3,7 @@ practice/
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 node_modules/
 =======
 node_modules/
@@ -16,3 +17,11 @@ node_modules
 >>>>>>> hw_38_router
 =======
 >>>>>>> c31e6ac92d158e4988689c4de942e4e0bc1dde2d
+=======
+
+.prettierrc.json
+
+node_modules
+=======
+
+>>>>>>> 62ee33554c25873eace7ce948fd1e5ff9651c607
